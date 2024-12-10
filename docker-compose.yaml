@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  nginx-streaming:
+    build: .
+    ports:
+      - "80:80"
+      - "443:443"
+      - "1935:1935"
+    volumes:
+      - ./media:/var/media
+      - ./logs:/var/log/nginx
+    environment:
+      - TZ=UTC
+    restart: unless-stopped
