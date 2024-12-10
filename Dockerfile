@@ -1,3 +1,6 @@
+ARG BUILD_DATE
+ARG VCS_REF
+
 FROM hhftechnology/alpine:3.19 as build
 
 RUN apk add --no-cache \
@@ -23,7 +26,7 @@ ENV VOD_MODULE_VERSION=1.33
 ENV LUA_MODULE_VERSION=v0.10.25
 ENV DEV_MODULE_VERSION=v0.3.3
 ENV RTMP_MODULE_VERSION=v1.2.2
-ENV THUMB_MODULE_VERSION=0.9.1
+ENV THUMB_MODULE_VERSION=v1.0.0
 
 # Download and extract NGINX and modules
 RUN curl -sL https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz | tar -C nginx --strip 1 -xz
@@ -58,6 +61,25 @@ RUN make install
 
 # Final stage
 FROM alpine:3.19
+
+ARG BUILD_DATE
+ARG VCS_REF
+
+LABEL maintainer="HHF Technology <discourse@hhf.technology>" \
+    architecture="amd64/x86_64" \
+    nginx-version="${NGINX_VERSION}" \
+    alpine-version="3.19" \
+    build="10-Dec-2024" \
+    org.opencontainers.image.title="alpine-nginx-video-stream" \
+    org.opencontainers.image.description="NGINX Container with VOD, RTMP, and Thumbnail modules running on Alpine Linux" \
+    org.opencontainers.image.authors="HHF Technology <discourse@hhf.technology>" \
+    org.opencontainers.image.vendor="HHF Technology" \
+    org.opencontainers.image.version="${NGINX_VERSION}" \
+    org.opencontainers.image.url="https://hub.docker.com/r/hhftechnology/alpine-nginx-video-stream/" \
+    org.opencontainers.image.source="https://github.com/hhftechnology/alpine-nginx-video-stream" \
+    org.opencontainers.image.base.name="docker.io/hhftechnology/alpine:3.19" \
+    org.opencontainers.image.revision=$VCS_REF \
+    org.opencontainers.image.created=$BUILD_DATE
 
 RUN apk add --no-cache \
     ca-certificates \
