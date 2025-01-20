@@ -1,7 +1,6 @@
 # Alpine NGINX Video Streaming Server
 
 [![Docker Automated build](https://img.shields.io/docker/automated/hhftechnology/alpine-nginx-video-stream.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/r/hhftechnology/alpine-nginx-video-stream/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/hhftechnology/alpine-nginx-video-stream.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/r/hhftechnology/alpine-nginx-video-stream/)
 [![Alpine Version](https://img.shields.io/badge/Alpine%20version-v3.19.0-green.svg?style=for-the-badge&logo=alpine-linux)](https://alpinelinux.org/)
 [![NGINX Version](https://img.shields.io/badge/NGINX%20version-v1.26.1-green.svg?style=for-the-badge&logo=nginx)](https://nginx.org/)
 
